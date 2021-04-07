@@ -17,7 +17,11 @@ class SearchForm extends React.Component {
 				<label>Github username:</label>
 				<input
 					className="form-control mb-1 mt-1"
-					placeholder="Enter username"
+					placeholder={
+						this.props.error === ""
+							? "Enter username"
+							: this.props.error
+					}
 					value={this.state.searchInput}
 					onChange={(e) =>
 						this.setState({ searchInput: e.target.value })

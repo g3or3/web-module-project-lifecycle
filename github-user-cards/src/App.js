@@ -9,6 +9,7 @@ class App extends React.Component {
 		users: [],
 		cardSelected: false,
 		followers: [],
+		error: "",
 	};
 
 	searchForUser = (user) => {
@@ -30,8 +31,11 @@ class App extends React.Component {
 						},
 					],
 				});
+				this.setState({ error: "" });
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				this.setState({ error: "No user found!" });
+			});
 	};
 
 	clearCards = () => {
@@ -56,6 +60,7 @@ class App extends React.Component {
 				<div className="container w-50 my-5">
 					<SearchForm
 						searchForUser={this.searchForUser}
+						error={this.state.error}
 						clearCards={this.clearCards}
 					/>
 				</div>
